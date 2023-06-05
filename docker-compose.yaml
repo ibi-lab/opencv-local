@@ -1,0 +1,15 @@
+version: '3'
+services:
+  cv:
+    image: ubuntu-opencv
+    build: .
+    container_name: cv
+    entrypoint: ["/bin/tail", "-f", "/dev/null"]
+    privileged: true
+    environment:
+      - DISPLAY=${HOSTNAME}:0
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ./sample/:/root/
+      # - ${HOME}/.Xauthority:/root/.Xauthority
